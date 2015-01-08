@@ -1,0 +1,15 @@
+{
+  "name": "mapshot",
+  "version": "1.0.0",
+  "description": "Posts a random google maps satellite snapshot to tumblr every hour.",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@trevpost",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^0.9.0",
+    "tumblr.js": "0.0.4"
+  }
+}
