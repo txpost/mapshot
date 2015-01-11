@@ -13,36 +13,27 @@ function getRandomNum (min, max) {
 	return Math.floor(Math.random() * (max - min) + min);
 }
 
-function newImage () {
-	var y,
-		x,
-		zoom;
-
-	y = getRandomNum(47, 59);
-	x = getRandomNum(-124, -110);
-	zoom = getRandomNum(12, 18);
-
-	document.getElementById('mapshot').src = "https://maps.googleapis.com/maps/api/staticmap?center=" + y + "," + x + "&zoom=" + zoom + "&size=600x600&maptype=satellite";
-	document.getElementById('lat').textContent = "lat: " + y;
-	document.getElementById('long').textContent = "long: " + x;
-	document.getElementById('zoom').textContent = "zoom: " + zoom;
-}
-
-// sorry, we have no imagery here: https://maps.googleapis.com/maps/api/staticmap?center=46,-140&zoom=12&size=600x600&maptype=satellite
-
-// getMaxZoomAtLatLng(latlng:GLatLng, callback:Function, opt_targetZoom:number)
-
-// google.maps.MaxZoomResult
-
 getImage = function (cb) {
 	var y,
 		x,
 		zoom,
 		uri,
+		area,
 		botData = {};
 
-	y = getRandomNum(47, 59); // top of BC to Seattle
-	x = getRandomNum(-124, -110); // Victoria, BC to AB-SK border
+	// get 0 or 1
+	area = getRandomNum(0,2);
+
+	if (area == 0) {
+		// BC-AB
+		y = getRandomNum(47, 59);
+		x = getRandomNum(-124, -110);
+	} else if (area == 1) {
+		// trans-canada
+		y = getRandomNum(41, 51);
+		x = getRandomNum(-124, -70);
+	};
+
 	zoom = getRandomNum(12, 18);
 
 	botData.uri = "https://maps.googleapis.com/maps/api/staticmap?center=" + y + "," + x + "&zoom=" + zoom + "&size=600x600&maptype=satellite&key=" + process.env.YT_API_KEY;
